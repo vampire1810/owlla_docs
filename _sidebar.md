@@ -1,4 +1,4 @@
-- [Trang chủ](/README.md)
+- [Trang chủ](/introduce.md)
 - Hướng dẫn sử dụng
-  - [Login](/guide/login.md)
+  - [Login](/guides/login.md)
 
