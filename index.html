@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>Tài liệu của bạn</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/docsify/themes/vue.css">
+</head>
+<body>
+  <div id="app">Loading...</div>
+
+  <!-- Cấu hình -->
+  <script>
+    window.$docsify = {
+      name: 'Owllee Agent',
+      loadSidebar: true,
+      subMaxLevel: 3,
+      repo: '', // link GitHub nếu có
+      search: 'auto', // nếu dùng plugin search
+      loadNavbar: true,
+      coverpage: false,
+      alias: {
+        '/.*/_sidebar.md': '/_sidebar.md'
+      },
+      copyCode: {
+        buttonText : 'Copy',
+        errorText  : 'Lỗi',
+        successText: 'Đã copy!'
+      }
+    }
+  </script>
+
+  <!-- Core Docsify -->
+  <script src="//cdn.jsdelivr.net/npm/docsify/lib/docsify.min.js"></script>
+
+  <!-- Plugins hỗ trợ hiển thị markdown nâng cao -->
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-bash.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/prismjs/components/prism-json.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
+</body>
+</html>

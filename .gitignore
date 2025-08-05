@@ -1,0 +1,28 @@
+# Node.js
+node_modules/
+npm-debug.log
+yarn.lock
+package-lock.json
+
+# Mac system files
+.DS_Store
+
+# VSCode config (tuỳ chọn)
+.vscode/
+
+# Docker
+*.log
+docker-compose.override.yml
+.env
+.env.*
+
+# OS-generated
+Thumbs.db
+
+# Build or temp files
+dist/
+.cache/
+.tmp/
+
+# Optional: ignore docsify serve cache
+docs/.cache/
