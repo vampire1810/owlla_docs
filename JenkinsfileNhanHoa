@@ -1,0 +1,45 @@
+pipeline {
+    agent any
+    stages {
+        stage('Init') {
+            steps {
+                echo 'Testing..'
+                telegramSend(message: 'Building job: $PROJECT_NAME - Nhan Hoa... - Link: $BUILD_URL', chatId: -4013555823)
+            }
+        }
+        stage ('Deployments') {
+            steps {
+                echo 'Deploying to Production environment...'
+                echo 'Copy project over SSH...'
+                sshPublisher(publishers: [
+                    sshPublisherDesc(
+                        configName: 'nhanhoa216',
+                        transfers:
+                            [sshTransfer(
+                                cleanRemote: false,
+                                excludes: '',
+                                execCommand: "docker build -t owllee-docs ./thinklabsdev/owlleedocsCI/ \
+                                    && docker service rm owllee-prod_docs || true \
+                                    && docker stack deploy -c ./thinklabsdev/owlleedocsCI/docker-compose-nhanhoa.yml owllee-prod \
+                                    && rm -rf ./thinklabsdev/owlleedocsCIB \
+                                    && mv ./thinklabsdev/owlleedocsCI/ ./thinklabsdev/owlleedocsCIB",
+                                execTimeout: 600000,
+                                flatten: false,
+                                makeEmptyDirs: false,
+                                noDefaultExcludes: false,
+                                patternSeparator: '[, ]+',
+                                remoteDirectory: './thinklabsdev/owlleedocsCI',
+                                remoteDirectorySDF: false,
+                                removePrefix: '',
+                                sourceFiles: '*, src/, docs/, examples/, static/, i18n/'
+                            )],
+                        usePromotionTimestamp: false,
+                        useWorkspaceInPromotion: false,
+                        verbose: false
+                    )
+                ])
+                telegramSend(message: 'Build - $PROJECT_NAME - Nhan Hoa - # $BUILD_NUMBER – STATUS: $BUILD_STATUS!', chatId: -4013555823)
+            }
+        }
+    }
+}
